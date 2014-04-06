@@ -8,6 +8,9 @@ gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
+gem 'haml-rails'
+gem 'bootstrap-sass-rails'
+gem 'bower-rails'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -26,6 +29,14 @@ gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
+
+group :development do
+  gem 'thin'
+  gem 'erb2haml'
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'seed-fu', github: 'mbleigh/seed-fu'
+end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
