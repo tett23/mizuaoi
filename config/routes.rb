@@ -1,7 +1,9 @@
 Mizuaoi::Application.routes.draw do
-  get "videos/play"
-  get "videos/index"
-  get "videos/show"
+  resources :videos do
+    member do
+      get 'play'
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,2 +1,2 @@
-%h1 Videos#index
-%p Find me in app/views/videos/index.html.haml
+=render partial: 'videos/list', locals: {videos: @videos}
+=paginate @videos
