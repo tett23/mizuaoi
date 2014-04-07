@@ -2,9 +2,8 @@ class EncodeLog < ActiveRecord::Base
   belongs_to :video
 
   def self.logs(video)
-    where(:all, conditions: {
-        video_id: video.id
-      }
+    self.where(
+      video_id: video.id
     ).order(created_at: :desc)
   end
 
