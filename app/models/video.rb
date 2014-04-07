@@ -5,4 +5,7 @@ class Video < ActiveRecord::Base
   def self.list()
     self.all().order(created_at: :desc, id: :desc)
   end
+
+  def exists_ts?
+  end
 end

@@ -1,4 +1,7 @@
 Mizuaoi::Application.routes.draw do
+  get "logs/job"
+  get "logs/encode"
+  get "logs/disporsable"
   resources :videos do
     member do
       get 'play'

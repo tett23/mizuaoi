@@ -6,7 +6,7 @@
     -next if log.video.nil?
     -secs = (log.finish_at.to_time.to_i-log.start_at.to_time.to_i).to_i rescue 0
     %tr
-      %td=link_to log.video.output_name, url_for(:videos, :show, :id=>log.video_id)
+      %td=link_to log.video.output_name, url(:videos, :show, :id=>log.video_id)
       %td=log.status
       %td=log.created_at.to_s(:db)
       %td=Time.now.midnight.advance(:seconds => secs).strftime('%T') # 経過時間を求める
@@ -14,4 +14,4 @@
       %td=number_to_human_size log.filesize
       %td=log.output_size
       %td
-        =button_link('', url_for(:videos, :destroy_ts, :id=>log.video.id), :icon=>'icon-trash', :method=>:delete, :confirm=>true, :disabled=>!log.video.exists_ts?)
+        =button_link('', '#', :glyph=>'trash', :method=>:delete, :confirm=>true, :disabled=>!log.video.exists_ts?)
