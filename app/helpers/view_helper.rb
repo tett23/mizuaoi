@@ -7,8 +7,6 @@ module ViewHelper
   -breadcrumbs.each_with_index do |item, i|
     %li
       =link_to item[:title], item[:url]
-      -if breadcrumbs.size-1 != i
-        %span.divider /
 EOS
 
     Haml::Engine.new(haml).render(self, :breadcrumbs=>@breadcrumbs)
