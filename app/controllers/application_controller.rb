@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   include CommonHelper
 
+  before_filter do
+    @sidebar = true
+  end
+
   private
   def add_breadcrumbs(title, url)
     @breadcrumbs = [] if @breadcrumbs.nil?

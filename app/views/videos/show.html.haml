@@ -9,7 +9,7 @@
         =button_link('編集', url_for(controller: :videos, action: :edit, id: @video.id), :glyph=>'edit')
         =button_link('削除', url_for(controller: :videos, action: :destroy, id: @video.id), :glyph=>'remove-sign', :method=>:delete, :confirm=>true)
 
-%h2.sub-header Logs
+%h2.sub-header Logs.
 =render partial: 'parts/encode_log_list', locals: {:logs=>@logs}
 
 %h2.sub-header Video Information

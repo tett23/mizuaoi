@@ -1,2 +1,4 @@
-%h1 Videos#play
-%p Find me in app/views/videos/play.html.haml
+%video{controls: true, autobuffer: true}
+  %source{src: video_path(@video)}
+
+=render partial: 'parts/video_infomation', locals: {video: @video}

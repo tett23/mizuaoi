@@ -12,7 +12,11 @@
     =render partial: 'parts/header'
     .container-fluid
       .row
-        #sidebar.col-sm-3.col-md-2.sidebar
-          =render partial: 'parts/sidebar'
-        #main.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-          =yield
+        -if @sidebar
+          #sidebar.col-sm-3.col-md-2.sidebar
+            =render partial: 'parts/sidebar'
+          #main.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+            =yield
+        -else
+          #main.main
+            =yield
