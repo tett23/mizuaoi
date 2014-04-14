@@ -168,6 +168,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   database_cleaner
   erb2haml
+  execjs
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
