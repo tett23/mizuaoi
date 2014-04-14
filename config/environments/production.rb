@@ -77,4 +77,6 @@ Mizuaoi::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.video_host = 'http://192.168.1.107/movie/frogbit/'
 end
