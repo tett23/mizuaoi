@@ -1,5 +1,9 @@
 Mizuaoi::Application.routes.draw do
-  resources :jobs
+  resources :jobs do
+    member do
+      post 'destroy_ts/:id' => 'jobs#destroy_ts', :as => :destroy_ts
+    end
+  end
 
   get "logs/job"
   get "logs/show/:id" => 'logs#show'
@@ -8,7 +12,6 @@ Mizuaoi::Application.routes.draw do
   resources :videos do
     member do
       get 'play'
-      delete 'destroy_ts/:id' => 'videos#destroy_ts'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

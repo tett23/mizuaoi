@@ -51,6 +51,18 @@ class JobsController < ApplicationController
     redirect_to url_for(controller: :jobs, action: :index), flash: {success: "destroy job: #{params[:id]}"}
   end
 
+  def destroy_ts
+    job = params.require(:job)
+    job[:priority] = Job.new_priority
+    job.permit!
+    job = Job.create(params[:job])
+    if job.persisted?
+      redirect_to request.referer, flash: {success: "#{job.video.output_name}のTS削除ジョブを追加"}
+    else
+      redirect_to request.referer, flash: {success: "#{job.video.output_name}のTS削除ジョブの追加に失敗"}
+    end
+  end
+
   private
   def permited_params
     params.require(:job).permit(:id, :job_type, :arguments, :priority, :scheduled_on)

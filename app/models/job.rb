@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  enum job_type: [:encode, :repair, :restructure_queue, :update_schema]
+  enum job_type: [:encode, :repair, :restructure_queue, :update_schema, :destroy_ts]
 
   def self.list()
     self.all().order(priority: :asc, id: :asc)

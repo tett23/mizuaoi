@@ -10,12 +10,6 @@ class Video < ActiveRecord::Base
     File.exists?(ts_path)
   end
 
-  def destroy_ts
-    return false unless self.exists_ts?
-
-    FileUtils.rm(ts_path)
-  end
-
   def ts_path
     File.join(Mizuaoi::Application.config.ts_dir, self.original_name)
   end

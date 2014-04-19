@@ -43,13 +43,6 @@ class VideosController < ApplicationController
     end
   end
 
-  def destroy_ts
-    @video = Video.find(params[:id])
-    @video.destroy_ts
-
-    redirect_to request.referer, flash: {success: "#{@video.output_name}のTSのを削除"}
-  end
-
   private
   def permited_params
     params.require(:video).permit(:id, :original_name, :name, :output_name, :episode_name, :episode_number, :repaired_ts, :is_encodable)
