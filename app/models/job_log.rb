@@ -1,5 +1,6 @@
 class JobLog < ActiveRecord::Base
-  enum job_type: [:encode, :repair, :restructure_queue, :update_schema]
+  enum status: [:failure, :success, :in_progress]
+  enum job_type: [:encode, :repair, :restructure_queue, :update_schema, :destroy_ts]
   belongs_to :video
 
   def self.list(type=nil)
