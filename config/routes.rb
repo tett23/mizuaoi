@@ -8,6 +8,7 @@ Mizuaoi::Application.routes.draw do
   resources :videos do
     member do
       get 'play'
+      delete 'destroy_ts/:id' => 'videos#destroy_ts'
     end
   end
   # The priority is based upon order of creation: first created -> highest priority.

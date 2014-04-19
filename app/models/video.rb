@@ -7,6 +7,17 @@ class Video < ActiveRecord::Base
   end
 
   def exists_ts?
+    File.exists?(ts_path)
+  end
+
+  def destroy_ts
+    return false unless self.exists_ts?
+
+    FileUtils.rm(ts_path)
+  end
+
+  def ts_path
+    File.join(Mizuaoi::Application.config.ts_dir, self.original_name)
   end
 
   def self.create_output_name(name, episode_number, episode_name, event_id)

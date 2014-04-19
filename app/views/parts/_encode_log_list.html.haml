@@ -14,4 +14,4 @@
       %td=number_to_human_size log.filesize
       %td=log.output_size
       %td
-        =button_link('', '#', :glyph=>'trash', :method=>:delete, :confirm=>true, :disabled=>!log.video.exists_ts?)
+        =button_link('', url_for(controller: :videos, action: :destroy_ts, id: log.video.id), :glyph=>'trash', :method=>:delete, :confirm=>true, :disabled=>!log.video.exists_ts?) if log.video.exists_ts?
