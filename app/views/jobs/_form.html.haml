@@ -1,0 +1,16 @@
+.form-group
+  %label{for: 'job[job_type]'}type
+  =f.select :job_type, Job.job_types, class: 'form-control'
+.form-group
+  %label{for: 'job[arguments]'}arguments
+  =f.text_area :arguments, class: 'form-control'
+.form-group
+  %label{for: 'job[priority]'}priority
+  =f.text_field :priority, class: 'form-control'
+.form-group
+  %label{for: 'job[scheduled_on]'}scheduled_on
+  =f.text_field :scheduled_on, class: 'form-control'
+.form-group
+  =f.hidden_field :id
+  =f.submit 'submit', class: 'btn btn-submit'
+  =button_link 'cancel', url_for(controller: :jobs, action: :index)

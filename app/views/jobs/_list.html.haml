@@ -1,0 +1,17 @@
+%table.table.table-bordered
+  %tr
+    -%w[id job_type arguments in_running priority scheduled_on created_at updated_at control].each do |column_name|
+      %th=column_name
+  -jobs.each do |job|
+    %tr
+      %td=job.id
+      %td=job.job_type
+      %td=job.arguments
+      %td=job.in_running
+      %td=job.priority
+      %td=job.scheduled_on
+      %td=job.created_at
+      %td=job.updated_at
+      %td
+        =button_link('', url_for(controller: :jobs, action: :edit, id: job.id), :glyph=>'edit')
+        =button_link('', url_for(controller: :jobs, action: :destroy, id: job.id), :glyph=>'remove-sign', :method=>:delete, :confirm=>true)

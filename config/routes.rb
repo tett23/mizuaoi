@@ -1,4 +1,6 @@
 Mizuaoi::Application.routes.draw do
+  resources :jobs
+
   get "logs/job"
   get "logs/encode"
   get "logs/disporsable"
