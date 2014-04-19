@@ -5,6 +5,7 @@ class JobsController < ApplicationController
 
   def new
     @job = Job.new
+    @job.priority = Job.new_priority
   end
 
   def create
