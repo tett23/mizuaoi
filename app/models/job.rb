@@ -6,6 +6,12 @@ class Job < ActiveRecord::Base
   end
 
   def self.new_priority
-    self.all().order(priority: :desc, id: :desc).first.priority + 1
+    last_item = self.all().order(priority: :desc, id: :desc).first
+
+    if last_item.nil?
+      0
+    else
+      last_item.priority + 1
+    end
   end
 end
