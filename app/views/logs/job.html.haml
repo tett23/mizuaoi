@@ -1,2 +1,4 @@
-%h1 Logs#job
-%p Find me in app/views/logs/job.html.haml
+%h1.page-header ジョブログ
+=render partial: 'parts/job_log_list', locals: {logs: @logs}
+
+=paginate @logs

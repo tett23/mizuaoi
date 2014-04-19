@@ -2,6 +2,7 @@ Mizuaoi::Application.routes.draw do
   resources :jobs
 
   get "logs/job"
+  get "logs/show/:id" => 'logs#show'
   get "logs/encode"
   get "logs/disporsable"
   resources :videos do

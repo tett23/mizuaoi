@@ -1,0 +1,13 @@
+%table.table.table-bordered
+  %tr
+    -%w[id type video body created_at control].each do |column_name|
+      %th=column_name
+  -logs.each do |log|
+    %tr
+      %td=log.id
+      %td=log.job_type
+      %td=link_to log.video.output_name, controller: :videos, action: :show, id: log.video.id unless log.video.blank?
+      %td=truncate log.body
+      %td=log.created_at
+      %td
+        =button_link('', url_for(controller: :logs, action: :show, id: log.id), :glyph=>'stats')
