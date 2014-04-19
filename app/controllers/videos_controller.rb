@@ -22,4 +22,27 @@ class VideosController < ApplicationController
 
     @sidebar = false
   end
+
+  def edit
+    @video = Video.find(params[:id])
+    error 404 if @video.nil?
+  end
+
+  def update
+    video = permited_params
+    @video = Video.find(video[:id])
+    error 404 if @video.nil?
+
+    video[:output_name] = Video.create_output_name(video[:name], video[:episode_number], video[:episode_name], video[:event_id])
+    if Video.update(@video.id, video)
+      redirect_to url_for(controller: :videos, action: :show, id: @video.id), flash: {success: "動画情報を編集しました"}
+    else
+      render action: :edit
+    end
+  end
+
+  private
+  def permited_params
+    params.require(:video).permit(:id, :original_name, :name, :output_name, :episode_name, :episode_number, :repaired_ts, :is_encodable)
+  end
 end

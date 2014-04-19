@@ -1,0 +1,35 @@
+.form-horizontal{role: 'form'}
+  .form-group
+    %label.control-label.col-sm-2 TSファイル名
+    .col-sm-10
+      =f.text_field :original_name, class: 'form-control'
+  .form-group
+    %label.control-label.col-sm-2 名前
+    .col-sm-10
+      =f.text_field :name, class: 'form-control'
+  .form-group
+    %label.control-label.col-sm-2 出力ファイル名
+    .col-sm-10
+      =f.text_field :output_name, class: 'form-control'
+  .form-group
+    %label.control-label.col-sm-2 タイトル
+    .col-sm-10
+      =f.text_field :episode_name, class: 'form-control'
+  .form-group
+    %label.control-label.col-sm-2 話数
+    .col-sm-10
+      =f.text_field :episode_number, class: 'form-control'
+  .form-group
+    %label.control-label.col-sm-2 修復済み
+    .col-sm-10
+      =f.text_field :repaired_ts, class: 'form-control'
+  .form-group
+    %label.control-label.col-sm-2 エンコード可能状態
+    .col-sm-10
+      =f.check_box :is_encodable
+  .form-group
+    .col-sm-2
+    .col-sm-10
+      =f.hidden_field :id
+      =f.submit 'submit', class: 'btn btn-submit'
+      =button_link 'cancel', url_for(controller: :videos, action: :index)
