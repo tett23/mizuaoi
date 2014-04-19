@@ -1,11 +1,12 @@
 %table.table.table-bordered
   %tr
-    -%w[id job_type arguments in_running priority scheduled_on created_at updated_at control].each do |column_name|
+    -%w[id job_type video arguments in_running priority scheduled_on created_at updated_at control].each do |column_name|
       %th=column_name
   -jobs.each do |job|
     %tr
       %td=job.id
       %td=job.job_type
+      %td=link_to job.video.output_name, controller: :videos, action: :show, :id=>job.video.id unless job.video.blank?
       %td=job.arguments
       %td=job.in_running
       %td=job.priority

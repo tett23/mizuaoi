@@ -14,4 +14,19 @@ class Job < ActiveRecord::Base
       last_item.priority + 1
     end
   end
+
+  def video
+    video_id = self.parsed_arguments[:video_id]
+    return nil if video_id.blank?
+
+    Video.find_by_id(video_id)
+  end
+
+  def parsed_arguments
+    return {} unless self.arguments.is_a?(String)
+    parsed = YAML.load(self.arguments)
+    return {} unless parsed
+
+    parsed.symbolize_keys
+  end
 end
