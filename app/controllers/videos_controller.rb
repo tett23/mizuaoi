@@ -34,6 +34,8 @@ class VideosController < ApplicationController
     error 404 if @video.nil?
 
     video[:output_name] = Video.create_output_name(video[:name], video[:episode_number], video[:episode_name], video[:event_id])
+    @video.move_output_file(video[:output_name]) unless @video.output_name === video[:output_name]
+
     if Video.update(@video.id, video)
       redirect_to url_for(controller: :videos, action: :show, id: @video.id), flash: {success: "動画情報を編集しました"}
     else
