@@ -1,4 +1,6 @@
 Mizuaoi::Application.routes.draw do
+  root 'home#index'
+
   put 'jobs/update_queue' => 'jobs#update_queue', :as => :update_queue
   resources :jobs do
     member do
