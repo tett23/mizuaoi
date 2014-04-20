@@ -3,12 +3,12 @@ class JobLog < ActiveRecord::Base
   enum job_type: [:encode, :repair, :restructure_queue, :update_schema, :destroy_ts]
   belongs_to :video
 
-  def self.list(type=nil)
+  def self.list(type=nil, conditions={})
     case type
     when :encode
-      self.where(job_type: :encode).order(created_at: :desc, id: :desc)
+      self.where({job_type: :encode}.merge(conditions)).order(created_at: :desc, id: :desc)
     else
-      self.all().order(created_at: :desc, id: :desc)
+      self.where(conditions).order(created_at: :desc, id: :desc)
     end
   end
 

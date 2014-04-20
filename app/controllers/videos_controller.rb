@@ -7,7 +7,7 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     error 404 if @video.nil?
 
-    @logs = EncodeLog.logs(@video)
+    @logs = JobLog.list(:encode, {video_id: params[:id]}).page(params[:page] || 1)
     add_breadcrumbs('動画一覧', url(:videos, :index))
     add_breadcrumbs(@video.output_name, url(:videos, :show, :id=>@video.id))
   end
