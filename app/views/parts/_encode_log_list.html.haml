@@ -13,4 +13,4 @@
       %td=number_to_human_size log.video.filesize
       %td=log.output_size
       %td
-        =button_link('', destroy_ts_job_path(log.video.id, job: {job_type: :destroy_ts, arguments: {video_id: log.video.id}.to_yaml}), :glyph=>'trash', :method=>:post, :confirm=>true, :disabled=>!log.video.exists_ts?) if log.video.exists_ts?
+        =button_link('', destroy_ts_job_path(log.video.id, job: {job_type: :destroy_ts, arguments: {video_id: log.video.id}.to_yaml}), :glyph=>'trash', :method=>:post, :confirm=>true, :disabled=>!log.video.exists_ts?) if !Job.already_queue?(:destroy_ts, log.video_id) && log.video.exists_ts?

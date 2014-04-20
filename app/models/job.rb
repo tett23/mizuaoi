@@ -29,4 +29,10 @@ class Job < ActiveRecord::Base
 
     parsed.symbolize_keys
   end
+
+  def self.already_queue?(job_type, video_id)
+    not self.where(job_type: Job.job_types[:destroy_ts]).find do |job|
+      job.parsed_arguments[:video_id] == video_id
+    end.nil?
+  end
 end
