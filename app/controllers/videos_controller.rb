@@ -1,6 +1,7 @@
 class VideosController < ApplicationController
   def index
     @videos = Video.list().page(params[:page] || 1)
+    add_breadcrumbs('動画一覧', url(:videos, :index))
   end
 
   def show
