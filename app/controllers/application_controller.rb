@@ -7,6 +7,9 @@ class ApplicationController < ActionController::Base
 
   before_filter do
     @sidebar = true
+    @search = {
+      query: params[:query]
+    }
   end
 
   private

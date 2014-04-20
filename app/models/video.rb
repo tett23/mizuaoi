@@ -25,4 +25,20 @@ class Video < ActiveRecord::Base
     self.output_name = destination
     self.save()
   end
+
+  def self.search(query)
+    keywords = query.strip.split(/\s/).map do |k|
+      k.strip
+    end
+    return [] if keywords.size.zero?
+
+    conditions = keywords.map do |k|
+      'program LIKE ?'
+    end
+    keywords = keywords.map do |k|
+      "%#{k}%"
+    end
+
+    self.where(conditions.join(" AND "), *keywords).order(created_at: :desc, id: :desc)
+  end
 end

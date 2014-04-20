@@ -6,6 +6,8 @@ Mizuaoi::Application.routes.draw do
     end
   end
 
+  get "search/index" => "search#index"
+
   get "logs/job"
   get "logs/show/:id" => 'logs#show'
   get "logs/encode"
