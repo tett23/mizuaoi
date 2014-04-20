@@ -4,7 +4,7 @@
       %th=column_name
   -logs.each do |log|
     -next if log.video.nil?
-    -secs = (log.start_at.to_time.to_i-log.finish_at.to_time.to_i).to_i rescue 0
+    -secs = (log.finish_at.to_time.to_i-log.start_at.to_time.to_i).to_i rescue 0
     %tr
       %td=link_to log.video.output_name, url(:videos, :show, :id=>log.video_id)
       %td=log.status
