@@ -63,6 +63,9 @@ class JobsController < ApplicationController
     end
   end
 
+  def update_queue
+  end
+
   private
   def permited_params
     params.require(:job).permit(:id, :job_type, :arguments, :priority, :scheduled_on)

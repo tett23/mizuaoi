@@ -21,5 +21,7 @@ module Mizuaoi
     # config.i18n.default_locale = :de
     config.active_record.default_timezone = :local
     config.time_zone = 'Tokyo'
+
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
   end
 end

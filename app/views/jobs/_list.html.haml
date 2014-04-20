@@ -1,15 +1,30 @@
 %table.table.table-bordered
-  %tr
-    -%w[priority job_type video arguments in_running scheduled_on control].each do |column_name|
-      %th=column_name
-  -jobs.each do |job|
+  %thead
     %tr
-      %td=job.priority
-      %td=job.job_type
-      %td=link_to job.video.output_name, controller: :videos, action: :show, :id=>job.video.id unless job.video.blank?
-      %td=truncate job.arguments
-      %td=job.in_running
-      %td=job.scheduled_on
-      %td
-        =button_link('', url_for(controller: :jobs, action: :edit, id: job.id), :glyph=>'edit')
-        =button_link('', url_for(controller: :jobs, action: :destroy, id: job.id), :glyph=>'remove-sign', :method=>:delete, :confirm=>true)
+      -%w[priority job_type video arguments in_running scheduled_on control].each do |column_name|
+        %th=column_name
+  %tbody.sortable
+    -jobs.each do |job|
+      %tr.job_item{data: {:'job-id' => job.id}}
+        %td=job.priority
+        %td=job.job_type
+        %td=link_to job.video.output_name, controller: :videos, action: :show, :id=>job.video.id unless job.video.blank?
+        %td=truncate job.arguments
+        %td=job.in_running
+        %td=job.scheduled_on
+        %td
+          =button_link('', url_for(controller: :jobs, action: :edit, id: job.id), :glyph=>'edit')
+          =button_link('', url_for(controller: :jobs, action: :destroy, id: job.id), :glyph=>'remove-sign', :method=>:delete, :confirm=>true)
+
+:coffeescript
+  $ ->
+    $('.sortable').sortable(
+      update: ->
+        job_queue = $('.job_item').map ->
+          return $(this).data('job-id')
+        $.ajax(
+          method: 'put',
+          url: '/jobs/update_queue',
+          data: {order: job_queue.toArray()}
+        )
+    )
