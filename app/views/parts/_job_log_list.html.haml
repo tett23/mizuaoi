@@ -1,6 +1,6 @@
 %table.table.table-bordered
   %tr
-    -%w[id type status video body created_at control].each do |column_name|
+    -%w[id type status video body start_at process_time control].each do |column_name|
       %th=column_name
   -logs.each do |log|
     %tr
@@ -9,6 +9,7 @@
       %td=log.status
       %td=link_to log.video.output_name, controller: :videos, action: :show, id: log.video.id unless log.video.blank?
       %td=truncate log.body
-      %td=log.created_at.to_s(:db)
+      %td=log.start_at.to_s(:db)
+      %td=log.process_time
       %td
         =button_link('', url_for(controller: :logs, action: :show, id: log.id), :glyph=>'stats')
