@@ -64,6 +64,13 @@ class JobsController < ApplicationController
   end
 
   def update_queue
+    params[:order].map do |job_id|
+      job_id.to_i
+    end.zip((0..params[:order].size-1).to_a) do |job_id, priority|
+      Job.update(job_id, priority: priority+1)
+    end
+
+    render json: true
   end
 
   private

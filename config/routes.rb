@@ -1,8 +1,8 @@
 Mizuaoi::Application.routes.draw do
+  put 'jobs/update_queue' => 'jobs#update_queue', :as => :update_queue
   resources :jobs do
     member do
       post 'destroy_ts/:id' => 'jobs#destroy_ts', :as => :destroy_ts
-      put 'update_queue/:id' => 'jobs#update_queue', :as => :update_queue
     end
   end
 
