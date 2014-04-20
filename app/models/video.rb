@@ -15,11 +15,11 @@ class Video < ActiveRecord::Base
   end
 
   def self.create_output_name(name, episode_number, episode_name, event_id)
-    "#{name}#{episode_number ? '#'+episode_number.to_s : ''}#{episode_name ? "「#{episode_name}」" : ''}_#{event_id}.mp4"
+    "#{name}#{episode_number.blank? ? '' : '#'+episode_number.to_s}#{"「#{episode_name}」" unless episode_name.blank?}_#{event_id}.mp4"
   end
 
   def move_output_file(destination)
-    return unless !self.is_encoded
+    return if !self.is_encoded && self.saved_directory.blank?
 
     FileUtils.mv(File.join(self.saved_directory, self.output_name), File.join(self.saved_directory, destination))
     self.output_name = destination
