@@ -22,7 +22,7 @@ EOS
     attributes[:disabled] = true if options[:disabled]
     attributes[:'data-confirm'] = options[:confirm_message] || default_confirm_message if options[:confirm]
 
-    options[:glyph] = 'glyph glyphicon-'+options[:glyph].to_s unless options[:glyph].blank?
+    options[:glyph] = 'glyph glyphicon glyphicon-'+options[:glyph].to_s unless options[:glyph].blank?
 
     haml = <<EOS
 %button{type: 'button', class: 'btn#{options[:class]}'}
