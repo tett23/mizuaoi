@@ -27,6 +27,5 @@ Mizuaoi::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  config.video_host = 'http://192.168.1.105/movie/frogbit/'
   config.ts_dir = '/home/tett23/video_tmp'
 end

@@ -9,6 +9,6 @@ module VideosHelper
   end
 
   def video_path(video)
-    Mizuaoi::Application.config.video_host+URI.encode(video.output_name)
+    "/movie/frogbit/"+URI.encode(video.output_name)
   end
 end
