@@ -27,4 +27,11 @@ class JobLog < ActiveRecord::Base
 
     parsed.symbolize_keys
   end
+
+  def process_time
+    finish_or_now = self.finish_at.blank? ? Time.now : self.finish_at.to_time
+    secs = (finish_or_now.to_i - self.start_at.to_time.to_i).to_i rescue 0
+
+    Time.now.midnight.advance(:seconds => secs).strftime('%T') # 経過時間を求める
+  end
 end

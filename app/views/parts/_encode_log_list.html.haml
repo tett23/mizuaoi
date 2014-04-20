@@ -4,12 +4,11 @@
       %th=column_name
   -logs.each do |log|
     -next if log.video.nil?
-    -secs = ((log.finish_at.blank? ? Time.now.to_i : log.finish_at.to_time.to_i)-log.start_at.to_time.to_i).to_i rescue 0
     %tr
       %td=link_to log.video.output_name, url(:videos, :show, :id=>log.video_id)
       %td=log.status
       %td=log.start_at.to_s(:db)
-      %td=Time.now.midnight.advance(:seconds => secs).strftime('%T') # 経過時間を求める
+      %td=log.process_time
       %td=truncate log.body
       %td=number_to_human_size log.video.filesize
       %td=log.output_size
