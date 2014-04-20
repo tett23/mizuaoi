@@ -19,6 +19,8 @@ class Video < ActiveRecord::Base
   end
 
   def move_output_file(destination)
+    return unless !self.is_encoded
+
     FileUtils.mv(File.join(self.saved_directory, self.output_name), File.join(self.saved_directory, destination))
     self.output_name = destination
     self.save()
