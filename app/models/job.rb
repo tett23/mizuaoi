@@ -9,7 +9,7 @@ class Job < ActiveRecord::Base
     last_item = self.all().order(priority: :desc, id: :desc).first
 
     if last_item.nil?
-      0
+      1
     else
       last_item.priority + 1
     end
