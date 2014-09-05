@@ -1,13 +1,13 @@
 class JobsController < ApplicationController
   def index
     @jobs = Job.list().page(params[:page] || 1)
-    add_breadcrumbs('ジョブ一覧', url(:jobs, :index))
+    add_breadcrumbs('ジョブ一覧', :jobs, :index)
   end
 
   def new
     @job = Job.new
     @job.priority = Job.new_priority
-    add_breadcrumbs('新規ジョブ', url(:jobs, :new))
+    add_breadcrumbs('新規ジョブ', :jobs, :new)
   end
 
   def create
@@ -25,8 +25,8 @@ class JobsController < ApplicationController
   def edit
     @job = Job.find(params[:id])
     error 404 if @job.nil?
-    add_breadcrumbs('ジョブ一覧', url(:jobs, :index))
-    add_breadcrumbs('ジョブ編集: '+params[:id], url(:jobs, :edit))
+    add_breadcrumbs('ジョブ一覧', :jobs, :index)
+    add_breadcrumbs('ジョブ編集: '+params[:id], :jobs, :edit)
   end
 
   def update

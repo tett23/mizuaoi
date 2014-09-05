@@ -4,7 +4,7 @@ class TsController < ApplicationController
       item.gsub(/(\d+)\-.+$/, '\1')
     end.uniq
     @videos = Video.list(identification_code: identification_codes).page(params[:page] || 1)
-    add_breadcrumbs('未削除TS一覧', url(:ts, :index))
+    add_breadcrumbs('未削除TS一覧', :ts, :index)
   end
 
   def show

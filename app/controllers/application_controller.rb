@@ -13,10 +13,15 @@ class ApplicationController < ActionController::Base
   end
 
   private
-  def add_breadcrumbs(title, url)
+  def add_breadcrumbs(title, controller, action, options={})
     @breadcrumbs = [] if @breadcrumbs.nil?
 
-    @breadcrumbs << {:title=>title, :url=>url}
+    @breadcrumbs << {
+      title: title,
+      controller: controller,
+      action: action,
+      options: options
+    }
   end
 
   def clear_breadcrumbs

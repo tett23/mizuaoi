@@ -1,15 +1,27 @@
 module ViewHelper
   def breadcrumbs
     return '' if @breadcrumbs.nil?
+    link_tags = begin
+      @breadcrumbs.map do |breadcrumb|
+        title, options= breadcrumb.values_at(:title, :options)
 
+        options[:controller] = breadcrumb[:controller]
+        options[:action] = breadcrumb[:action]
+
+        link_to(title, options)
+      end
+    rescue
+      nil
+    end
+    return '' if link_tags.blank?
     haml = <<EOS
 %ul.breadcrumb
-  -breadcrumbs.each_with_index do |item, i|
+  -link_tags.each do |link_tag|
     %li
-      =link_to item[:title], item[:url]
+      !=link_tag
 EOS
 
-    Haml::Engine.new(haml).render(self, :breadcrumbs=>@breadcrumbs)
+    Haml::Engine.new(haml).render(self, :link_tags=>link_tags)
   end
 
   def button_link(str, url, options={})
