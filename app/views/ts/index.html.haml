@@ -1,3 +1,4 @@
 %h1.page-header TS未削除動画一覧
-=render partial: 'videos/list', locals: {videos: @videos}
-=paginate @videos
+=render partial: 'parts/encode_log_list', locals: {logs: @logs}
+
+=paginate @logs
