@@ -57,13 +57,16 @@ class JobsController < ApplicationController
 
   def destroy_ts
     job = params.require(:job)
+    job[:arguments][:video_id] = job[:arguments][:video_id].to_i
+    job[:arguments] = job[:arguments].to_h.to_yaml
     job[:priority] = Job.new_priority
     job.permit!
-    job = Job.create(params[:job])
+    job = Job.create(job.to_h)
+
     if job.persisted?
-      redirect_to request.referer, flash: {success: "#{job.video.output_name}のTS削除ジョブを追加"}
+      render json: true
     else
-      redirect_to request.referer, flash: {success: "#{job.video.output_name}のTS削除ジョブの追加に失敗"}
+      render json: false
     end
   end
 
