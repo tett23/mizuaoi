@@ -35,6 +35,7 @@ group :development do
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'seed-fu', github: 'mbleigh/seed-fu'
+  gem 'quiet_assets'
 end
 
 group :doc do
