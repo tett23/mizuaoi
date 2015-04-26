@@ -7,7 +7,7 @@
     %tr
       %td=link_to log.video.output_name, url(:videos, :show, :id=>log.video_id)
       %td=log.status
-      %td=log.start_at.to_s(:db)
+      %td=log.start_at.localtime.to_s(:db)
       %td=log.process_time
       %td=truncate log.body
       %td=number_to_human_size log.video.filesize

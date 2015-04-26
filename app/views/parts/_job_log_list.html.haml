@@ -9,7 +9,7 @@
       %td=log.status
       %td=link_to log.video.output_name, controller: :videos, action: :show, id: log.video.id unless log.video.blank?
       %td=truncate log.body
-      %td=log.start_at.to_s(:db)
+      %td=log.start_at.localtime.to_s(:db)
       %td=log.process_time
       %td
         =button_link('', url_for(controller: :logs, action: :show, id: log.id), :glyph=>'stats')
