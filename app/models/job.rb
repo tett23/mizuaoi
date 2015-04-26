@@ -15,11 +15,14 @@ class Job < ActiveRecord::Base
     end
   end
 
-  def video
-    video_id = self.parsed_arguments[:video_id]
-    return nil if video_id.blank?
+  def video_id
+    self.parsed_arguments[:video_id]
+  end
 
-    Video.find_by_id(video_id)
+  def video
+    return nil if self.video_id.blank?
+
+    Video.find_by_id(self.video_id)
   end
 
   def parsed_arguments

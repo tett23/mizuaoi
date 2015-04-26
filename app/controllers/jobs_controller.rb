@@ -1,6 +1,14 @@
 class JobsController < ApplicationController
   def index
     @jobs = Job.list().page(params[:page] || 1)
+    video_ids = @jobs.map do |job|
+      job.video_id
+    end.compact
+    @videos = Video.find(video_ids).inject({}) do |h, video|
+      h[video.id] = video
+
+      h
+    end
     add_breadcrumbs('ジョブ一覧', :jobs, :index)
   end
 

@@ -8,7 +8,7 @@
       %tr.job_item{data: {:'job-id' => job.id}}
         %td=job.priority
         %td=job.job_type
-        %td=link_to job.video.output_name, controller: :videos, action: :show, :id=>job.video.id unless job.video.blank?
+        %td=link_to @videos[job.video_id].output_name, controller: :videos, action: :show, :id=>@videos[job.video_id] unless job.video_id.blank?
         %td=truncate job.arguments
         %td=job.in_running
         %td=job.scheduled_on
