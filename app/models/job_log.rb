@@ -6,9 +6,9 @@ class JobLog < ActiveRecord::Base
   def self.list(type=nil, conditions={})
     case type
     when :encode
-      self.where({job_type: :encode}.merge(conditions)).order(created_at: :desc, id: :desc)
+      self.where({job_type: :encode}.merge(conditions)).order(created_at: :desc, id: :desc).preload(:video)
     else
-      self.where(conditions).order(created_at: :desc, id: :desc)
+      self.where(conditions).order(created_at: :desc, id: :desc).preload(:video)
     end
   end
 
