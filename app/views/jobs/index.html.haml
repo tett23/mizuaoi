@@ -6,5 +6,5 @@
       .btn-group
         =button_link('作成', url_for(controller: :jobs, action: :new), :glyph=>'plus')
 
-=render partial: 'jobs/list', locals: {jobs: @jobs}
+=render partial: 'jobs/list', locals: {jobs: @jobs, videos: @videos}
 =paginate @jobs
