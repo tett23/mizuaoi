@@ -2,6 +2,6 @@
 %h2.page-header 動画一覧
 =render partial: 'videos/list', locals: {videos: @videos}
 %h2.page-header ジョブ一覧
-=render partial: 'jobs/list', locals: {jobs: @jobs}
+=render partial: 'jobs/list', locals: {jobs: @jobs, videos: @job_videos}
 %h2.page-header ログ一覧
 =render partial: 'parts/job_log_list', locals: {logs: @logs}
