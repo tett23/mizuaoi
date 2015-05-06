@@ -1,5 +1,5 @@
 class Job < ActiveRecord::Base
-  enum job_type: [:encode, :repair, :restructure_queue, :update_schema, :destroy_ts]
+  enum job_type: [:encode, :repair, :restructure_queue, :update_schema, :destroy_ts, :update_output_name, :get_program]
 
   ENCODE_SIZE = [
     {width: 1440, height: 1080},
