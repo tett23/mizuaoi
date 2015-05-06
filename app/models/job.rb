@@ -1,6 +1,12 @@
 class Job < ActiveRecord::Base
   enum job_type: [:encode, :repair, :restructure_queue, :update_schema, :destroy_ts]
 
+  ENCODE_SIZE = [
+    {width: 1440, height: 1080},
+    {width: 1280, height: 720},
+    {width: 480, height: 360}
+  ]
+
   def self.list()
     self.all().order(priority: :asc, id: :asc)
   end
