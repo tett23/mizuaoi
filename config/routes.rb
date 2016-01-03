@@ -2,6 +2,7 @@ Mizuaoi::Application.routes.draw do
   root 'home#index'
 
   put 'jobs/update_queue' => 'jobs#update_queue', :as => :update_queue
+  post 'jobs/create_by/:job' => 'jobs#create_by', as: :create_by
   resources :jobs do
     member do
       post 'destroy_ts/:id' => 'jobs#destroy_ts', :as => :destroy_ts

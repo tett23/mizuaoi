@@ -78,6 +78,19 @@ class JobsController < ApplicationController
     end
   end
 
+  def create_by
+    job = {
+      arguments: params[:arguments],
+      priority: Job.new_priority
+    }
+    #job = Job.create(job)
+    if job.persisted?
+      redirect_to request.referer, flash: {success: ""}
+    else
+      redirect_to request.referer, flash: {success: ""}
+    end
+  end
+
   def update_queue
     params[:order].map do |job_id|
       job_id.to_i

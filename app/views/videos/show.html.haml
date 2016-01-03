@@ -6,6 +6,9 @@
     .btn-toolbar{role: :toolbar}
       .btn-group
         =button_link('見る', url_for(controller: :videos, action: :play, id: @video.id), :glyph=>'film')
+        =button_link('エンコードジョブ追加', create_by_path(job: :encode, arguments: {video_id: @video.id}.to_yaml), method: :post, glyph: 'play')
+        =button_link('修正ジョブ追加', create_by_path(job: :repaire, arguments: {video_id: @video.id}.to_yaml), method: :post, glyph: 'filter')
+        =button_link('TS削除ジョブ追加', create_by_path(job: :destroy, arguments: {video_id: @video.id}.to_yaml), method: :post, glyph: 'remove', confirm: true)
         =button_link('編集', url_for(controller: :videos, action: :edit, id: @video.id), :glyph=>'edit')
         =button_link('削除', url_for(controller: :videos, action: :destroy, id: @video.id), :glyph=>'remove-sign', :method=>:delete, :confirm=>true)
 

@@ -1,4 +1,25 @@
-%video{controls: true, autobuffer: true}
+%video#movie{controls: true, autobuffer: true}
   %source{src: video_path(@video)}
 
+#player
+  .play
+    play
+  .seek_bar
+    seek_bar
+  .current_time
+    current_time
+  .mute
+    mute
+  .volume
+    volume
+  .full_screen
+    full_screen
+  .play_chromecast
+    play_chromecast
+
 =render partial: 'parts/video_infomation', locals: {video: @video}
+
+=javascript_include_tag 'https://www.gstatic.com/cv/js/sender/v1/cast_sender.js'
+
+:coffeescript
+  player = new window.Player(document.getElementById('movie'), document.getElementById('player'))
